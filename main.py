@@ -45,11 +45,7 @@ def listen_to_kick_chat(chatroom_id):
                         except ValueError:
                             print(f"Invalid drink value: {drinks}")
                             return
-                        # Get current value, add, and store
-                        current = rdb.get("drinks")
-                        current_value = int(current) if current else 0
-                        new_total = current_value + add_value
-                        rdb.set("drinks", new_total)
+                        rdb.set("drinks", add_value)
                         print(f'command received: {content} (new total: {new_total})')
         except Exception as e:
             print("Error:", e)
