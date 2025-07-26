@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Overlay</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 10px;
+            background: transparent;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            font-size: 24px;
+        }
+        .test-message {
+            background: rgba(217, 0, 255, 0.7);
+            border-radius: 15px;
+            padding: 10px 20px;
+            text-align: center;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-message">
+        calories consumed: <span id="calories">0</span>
+    </div>
+    <script>
+    function fetchCalories() {
+        fetch('/calories')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('calories').textContent = data.calories;
+        });
+    }
+    setInterval(fetchCalories, 2000); // Fetch every 2 seconds
+    fetchCalories(); // Initial fetch
+    </script>
+</body>
+</html> 
