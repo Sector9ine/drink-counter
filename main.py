@@ -46,7 +46,7 @@ def listen_to_kick_chat(chatroom_id):
                             print(f"Invalid drink value: {drinks}")
                             return
                         rdb.set("drinks", add_value)
-                        print(f'command received: {content} (new total: {new_total})')
+                        print(f'command received: {content} (new total: {add_value})')
         except Exception as e:
             print("Error:", e)
 
