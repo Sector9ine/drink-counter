@@ -22,18 +22,18 @@
 </head>
 <body>
     <div class="test-message">
-        calories consumed: <span id="calories">0</span>
+        Drink count: <span id="drinks">0</span>
     </div>
     <script>
-    function fetchCalories() {
-        fetch('/calories')
+    function fetchDrinks() {
+        fetch('/')
         .then(response => response.json())
         .then(data => {
-            document.getElementById('calories').textContent = data.calories;
+            document.getElementById('drinks').textContent = data.drinks;
         });
     }
-    setInterval(fetchCalories, 2000); // Fetch every 2 seconds
-    fetchCalories(); // Initial fetch
+    setInterval(fetchDrinks, 2000); // Fetch every 2 seconds
+    fetchDrinks(); // Initial fetch
     </script>
 </body>
 </html> 

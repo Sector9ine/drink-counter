@@ -69,14 +69,13 @@ def listen_to_kick_chat(chatroom_id):
     )
     ws.run_forever()
 
-@app.route('/', methods=['GET', 'POST'])
+chatroom_id = get_chatroom_id(slug)
+# Start the chat listener in a background thread
+threading.Thread(target=listen_to_kick_chat, args=(chatroom_id,), daemon=True).start()
+
+@app.route('/')
 def index():
-    if request.method == 'POST':
-        slug = kick_slug
-        chatroom_id = get_chatroom_id(slug)
-        # Start the chat listener in a background thread
-        threading.Thread(target=listen_to_kick_chat, args=(chatroom_id,), daemon=True).start()
-        return render_template('overlay.html')
+    return render_template('overlay.html')
 
 @app.route('/drinks')
 def get_drinks():
