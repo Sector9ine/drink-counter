@@ -32,6 +32,8 @@ def listen_to_kick_chat(chatroom_id):
                 content = msg.get("content")
                 badges = msg.get("sender", {}).get("identity", {}).get("badges", [])
                 badge_types = [badge.get("type") for badge in badges]
+                name = msg.get("sender", {}).get("username", "Unknown")
+                print(name)
                 if 'broadcaster' in badge_types or 'moderator' in badge_types:
                     if content.startswith('!drinks'):
                         if content == '!drinks delete':
