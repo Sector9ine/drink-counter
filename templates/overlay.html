@@ -26,7 +26,7 @@
     </div>
     <script>
     function fetchDrinks() {
-        fetch('/')
+        fetch('/drinks')
         .then(response => response.json())
         .then(data => {
             document.getElementById('drinks').textContent = data.drinks;
