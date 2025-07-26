@@ -69,7 +69,7 @@ def listen_to_kick_chat(chatroom_id):
     )
     ws.run_forever()
 
-chatroom_id = get_chatroom_id(slug)
+chatroom_id = get_chatroom_id(kick_slug)
 # Start the chat listener in a background thread
 threading.Thread(target=listen_to_kick_chat, args=(chatroom_id,), daemon=True).start()
 
