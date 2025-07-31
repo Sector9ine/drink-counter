@@ -32,8 +32,23 @@
             document.getElementById('drinks').textContent = data.drinks;
         });
     }
+    
+    function showSubscribeMessage() {
+        const drinkDiv = document.querySelector('.test-message');
+        drinkDiv.innerHTML = 'Subscribe to Zam_LIVE';
+        console.log('Subscribe to Zam_LIVE message displayed at:', new Date().toLocaleString());
+        
+        // Show drink count again after 5 seconds
+        setTimeout(() => {
+            fetchDrinks();
+        }, 5000);
+    }
+    
     setInterval(fetchDrinks, 2000); // Fetch every 2 seconds
     fetchDrinks(); // Initial fetch
+    
+    // Show subscribe message every 1 minute (60000 ms)
+    setInterval(showSubscribeMessage, 60000);
     </script>
 </body>
 </html> 
