@@ -29,7 +29,7 @@
         fetch('/drinks')
         .then(response => response.json())
         .then(data => {
-            document.getElementById('drinks').textContent = 'testing';
+            document.getElementById('drinks').textContent = data.drinks;
         });
     }
     setInterval(fetchDrinks, 2000); // Fetch every 2 seconds
