@@ -36,6 +36,17 @@
         });
     }
     
+    function checkRefresh() {
+        fetch('/refresh')
+        .then(response => response.json())
+        .then(data => {
+            if (data.refresh) {
+                console.log('Refresh command received, reloading page...');
+                location.reload();
+            }
+        });
+    }
+    
     function showSubscribeMessage() {
         const drinkDiv = document.querySelector('.test-message');
         const subscribeDiv = document.getElementById('subscribe-message');
@@ -54,6 +65,9 @@
     
     setInterval(fetchDrinks, 2000); // Fetch every 2 seconds
     fetchDrinks(); // Initial fetch
+    
+    // Check for refresh command every 5 seconds
+    setInterval(checkRefresh, 5000);
     
     // Show subscribe message every 5 minutes (300000 ms)
     setInterval(showSubscribeMessage, 300000);

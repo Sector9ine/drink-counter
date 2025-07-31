@@ -47,6 +47,9 @@ def listen_to_kick_chat(chatroom_id):
                             return
                         rdb.set("drinks", add_value)
                         print(f'command received: {content} (new total: {add_value})')
+                    elif content == '!z':
+                        rdb.set("refresh", "true")
+                        print(f'refresh command received from {name}')
         except Exception as e:
             print("Error:", e)
 
@@ -79,6 +82,10 @@ def get_drinks():
     value = rdb.get("drinks")
     drinks = int(value) if value else 0
     return jsonify({'drinks': drinks})
+
+@app.route('/refresh')
+def refresh():
+    return jsonify({'refresh': True})
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=8080)
