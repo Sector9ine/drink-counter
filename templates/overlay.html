@@ -24,9 +24,6 @@
     <div class="test-message">
         🍸Drink count: <span id="drinks">0</span>
     </div>
-    <div class="test-message" id="subscribe-message" style="display: none;">
-        Subscribe to Zam_LIVE
-    </div>
     <script>
     function fetchDrinks() {
         fetch('/drinks')
@@ -35,43 +32,8 @@
             document.getElementById('drinks').textContent = data.drinks;
         });
     }
-    
-    function checkRefresh() {
-        fetch('/refresh')
-        .then(response => response.json())
-        .then(data => {
-            if (data.refresh) {
-                console.log('Refresh command received, reloading page...');
-                location.reload();
-            }
-        });
-    }
-    
-    function showSubscribeMessage() {
-        const drinkDiv = document.querySelector('.test-message');
-        const subscribeDiv = document.getElementById('subscribe-message');
-        
-        // Hide drink count and show subscribe message
-        drinkDiv.style.display = 'none';
-        subscribeDiv.style.display = 'inline-block';
-        console.log('Subscribe to Zam_LIVE message displayed at:', new Date().toLocaleString());
-        
-        // Hide subscribe message and show drink count after 5 seconds
-        setTimeout(() => {
-            subscribeDiv.style.display = 'none';
-            drinkDiv.style.display = 'inline-block';
-        }, 5000);
-    }
-    
     setInterval(fetchDrinks, 2000); // Fetch every 2 seconds
     fetchDrinks(); // Initial fetch
-    
-    // Check for refresh command every 5 seconds
-    setInterval(checkRefresh, 5000);
-    
-    // Show subscribe message every 5 minutes (300000 ms)
-    setInterval(showSubscribeMessage, 300000);
-    showSubscribeMessage(); // Show immediately on page load
     </script>
 </body>
 </html> 
