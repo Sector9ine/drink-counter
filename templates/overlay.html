@@ -29,11 +29,33 @@
         fetch('/drinks')
         .then(response => response.json())
         .then(data => {
-            document.getElementById('drinks').textContent = data.drinks;
+            const drinksElement = document.getElementById('drinks');
+            if (drinksElement) {
+                drinksElement.textContent = data.drinks;
+            } else {
+                // If drinks element doesn't exist, recreate the drink count display
+                const drinkDiv = document.querySelector('.test-message');
+                drinkDiv.innerHTML = `🍸Drink count: <span id="drinks">${data.drinks}</span>`;
+            }
         });
     }
+    
+    function showSubscribeMessage() {
+        const drinkDiv = document.querySelector('.test-message');
+        drinkDiv.innerHTML = 'Subscribe to Zam_LIVE';
+        console.log('Subscribe to Zam_LIVE message displayed at:', new Date().toLocaleString());
+        
+        // Show drink count again after 10 seconds
+        setTimeout(() => {
+            fetchDrinks();
+        }, 10000);
+    }
+    
     setInterval(fetchDrinks, 2000); // Fetch every 2 seconds
     fetchDrinks(); // Initial fetch
+    
+    // Show subscribe message every 5 minutes (300000 ms)
+    setInterval(showSubscribeMessage, 300000);
     </script>
 </body>
 </html> 
