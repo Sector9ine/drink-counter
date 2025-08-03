@@ -56,6 +56,11 @@
     
     // Show subscribe message every 5 minutes (300000 ms)
     setInterval(showSubscribeMessage, 300000);
+    
+    // Auto-refresh the page every 30 minutes to get latest code
+    setInterval(() => {
+        location.reload();
+    }, 1800000);
     </script>
 </body>
 </html> 

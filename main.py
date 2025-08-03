@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, render_template, jsonify, make_response
 import threading
 import cloudscraper
 import websocket
@@ -72,7 +72,11 @@ threading.Thread(target=listen_to_kick_chat, args=(chatroom_id,), daemon=True).s
 
 @app.route('/')
 def index():
-    return render_template('overlay.html')
+    response = make_response(render_template('overlay.html'))
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
+    return response
 
 @app.route('/drinks')
 def get_drinks():
