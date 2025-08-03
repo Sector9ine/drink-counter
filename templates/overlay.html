@@ -54,13 +54,14 @@
     setInterval(fetchDrinks, 2000); // Fetch every 2 seconds
     fetchDrinks(); // Initial fetch
     
-    // Show subscribe message every 5 minutes (300000 ms)
-    setInterval(showSubscribeMessage, 300000);
+    // Show subscribe message every 60 seconds (60000 ms)
+    setInterval(showSubscribeMessage, 60000);
     
-    // Auto-refresh the page every 30 minutes to get latest code
+    // Auto-refresh the page every 20 seconds to get latest code
     setInterval(() => {
+        console.log('Auto-refreshing page at:', new Date().toLocaleString());
         location.reload();
-    }, 1800000);
+    }, 20000);
     </script>
 </body>
 </html> 
