@@ -48,6 +48,7 @@
         // Show drink count again after 10 seconds
         setTimeout(() => {
             fetchDrinks();
+            console.log('Reverted back to drink count at:', new Date().toLocaleString());
         }, 10000);
     }
     
@@ -57,11 +58,11 @@
     // Show subscribe message every 60 seconds (60000 ms)
     setInterval(showSubscribeMessage, 60000);
     
-    // Auto-refresh the page every 20 seconds to get latest code
-    setInterval(() => {
-        console.log('Auto-refreshing page at:', new Date().toLocaleString());
+    // Refresh once after 5 seconds to get latest code when deployed
+    setTimeout(() => {
+        console.log('Refreshing page once to get latest code at:', new Date().toLocaleString());
         location.reload();
-    }, 20000);
+    }, 5000);
     </script>
 </body>
 </html> 
