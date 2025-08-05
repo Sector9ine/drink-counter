@@ -25,44 +25,15 @@
         🍸Drink count: <span id="drinks">0</span>
     </div>
     <script>
-    let showingSubscribe = false;
-    
     function fetchDrinks() {
-        if (showingSubscribe) return; // Don't update if showing subscribe message
-        
         fetch('/drinks')
         .then(response => response.json())
         .then(data => {
-            const drinksElement = document.getElementById('drinks');
-            if (drinksElement) {
-                drinksElement.textContent = data.drinks;
-            } else {
-                // If drinks element doesn't exist, recreate the drink count display
-                const drinkDiv = document.querySelector('.test-message');
-                drinkDiv.innerHTML = `🍸Drink count: <span id="drinks">${data.drinks}</span>`;
-            }
+            document.getElementById('drinks').textContent = data.drinks;
         });
     }
-    
-    function showSubscribeMessage() {
-        showingSubscribe = true;
-        const drinkDiv = document.querySelector('.test-message');
-        drinkDiv.innerHTML = 'Subscribe to Zam_LIVE';
-        console.log('Subscribe to Zam_LIVE message displayed at:', new Date().toLocaleString());
-        
-        // Show drink count again after 10 seconds
-        setTimeout(() => {
-            showingSubscribe = false;
-            fetchDrinks();
-            console.log('Reverted back to drink count at:', new Date().toLocaleString());
-        }, 10000);
-    }
-    
     setInterval(fetchDrinks, 2000); // Fetch every 2 seconds
     fetchDrinks(); // Initial fetch
-    
-    // Show subscribe message every 60 seconds (60000 ms)
-    setInterval(showSubscribeMessage, 60000);
     </script>
 </body>
 </html> 
